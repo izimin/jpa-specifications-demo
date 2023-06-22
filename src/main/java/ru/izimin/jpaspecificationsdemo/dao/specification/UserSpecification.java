@@ -12,15 +12,14 @@ public class UserSpecification {
     private LocalDate birthDate;
     private String phone;
     private String name;
-    private String email;
 
     public Specification<User> buildSpecification() {
-        return Specification.where(specificationByDateOfBirth())
+        return Specification.where(specificationByBirthDate())
                 .and(specificationByName())
                 .and(specificationByPhone());
     }
 
-    public Specification<User> specificationByDateOfBirth() {
+    public Specification<User> specificationByBirthDate() {
         return (root, query, cb) -> birthDate == null ? null
                 : cb.greaterThanOrEqualTo(root.get("birthDate"), birthDate);
     }
